@@ -1,0 +1,58 @@
+import java.util.*;
+
+class Main {
+   public static int bs(int arr[], int target) {
+      int low = 0;
+      int high = arr.length - 1;
+      while (low <= high) {
+          int mid = low + (high -low) / 2;
+          if (arr[mid] == target) {
+              return mid;
+          }
+          
+          if (arr[mid] < target) {
+              low = mid + 1;
+          }
+          else {
+              high = mid - 1;
+          }
+      }
+      return -1;
+   }
+
+   public static void main(String args[]) {
+     Scanner sc = new Scanner(System.in);
+     System.out.println("Enter array size");
+     int size = sc.nextInt();
+     int arr[] = new int[size];
+     
+     System.out.println("Enter the array elements");
+     for (int i = 0; i < size; i++) {
+        arr[i] = sc.nextInt();
+     }
+     
+     System.out.println("Enter the target:");
+     int target = sc.nextInt();
+     int result = bs(arr, target);
+     
+     if (result != -1) {
+         System.out.println("Key found at index " + result);
+     } else {
+         System.out.println("Key not found");
+     }
+  }
+}
+
+
+//output
+Enter array size
+5
+Enter the array elements
+1
+2
+3
+4
+5
+Enter the target:
+5
+Key found at index 4
