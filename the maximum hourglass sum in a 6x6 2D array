@@ -1,0 +1,55 @@
+import java.util.Scanner;
+
+public class Solution {
+
+    // Function to calculate the maximum hourglass sum
+    static int hourglassSum(int[][] arr) {
+        int maxSum = Integer.MIN_VALUE;
+
+        // Loop through each hourglass
+        for (int i = 0; i < 4; i++) { // Rows for the top of hourglass
+            for (int j = 0; j < 4; j++) { // Columns for the top of hourglass
+                // Calculate the sum of the current hourglass
+                int currentSum = arr[i][j] + arr[i][j + 1] + arr[i][j + 2] // Top row
+                               + arr[i + 1][j + 1] // Middle element
+                               + arr[i + 2][j] + arr[i + 2][j + 1] + arr[i + 2][j + 2]; // Bottom row
+
+                // Update maxSum if the currentSum is greater
+                maxSum = Math.max(maxSum, currentSum);
+            }
+        }
+
+        return maxSum;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int[][] arr = new int[6][6];
+
+        // Read the 6x6 array
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 6; j++) {
+                arr[i][j] = scanner.nextInt();
+            }
+        }
+
+        // Calculate and print the maximum hourglass sum
+        System.out.println(hourglassSum(arr));
+
+        scanner.close();
+    }
+}
+
+
+//output
+
+input:
+1 1 1 0 0 0
+0 1 0 0 0 0
+1 1 1 0 0 0
+0 0 2 4 4 0
+0 0 0 2 0 0
+0 0 1 2 4 0
+
+output
+19
