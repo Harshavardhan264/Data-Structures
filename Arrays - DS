@@ -1,0 +1,40 @@
+import java.util.Scanner;
+
+public class Solution {
+
+    // Function to reverse the array
+    static int[] reverseArray(int[] a) {
+        int n = a.length;
+        int[] reversedArray = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            reversedArray[i] = a[n - 1 - i];
+        }
+
+        return reversedArray;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Read the size of the array
+        int n = scanner.nextInt();
+        scanner.nextLine(); // Consume newline character
+
+        // Read the array elements
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = scanner.nextInt();
+        }
+
+        // Reverse the array
+        int[] reversedArr = reverseArray(arr);
+
+        // Print the reversed array
+        for (int i = 0; i < n; i++) {
+            System.out.print(reversedArr[i] + " ");
+        }
+
+        scanner.close();
+    }
+}
