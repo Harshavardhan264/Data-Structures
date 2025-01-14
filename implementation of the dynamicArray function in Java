@@ -1,0 +1,85 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Solution {
+
+    // Function to perform the operations on the dynamic array
+    static List<Integer> dynamicArray(int n, List<List<Integer>> queries) {
+        // Initialize the list of arrays
+        List<List<Integer>> seqList = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            seqList.add(new ArrayList<>());
+        }
+
+        // Resultant list for type 2 query outputs
+        List<Integer> results = new ArrayList<>();
+        int lastAnswer = 0;
+
+        // Process each query
+        for (List<Integer> query : queries) {
+            int queryType = query.get(0);
+            int x = query.get(1);
+            int y = query.get(2);
+
+            // Calculate the index in seqList
+            int idx = (x ^ lastAnswer) % n;
+
+            if (queryType == 1) {
+                // Type 1 query: Append y to seqList[idx]
+                seqList.get(idx).add(y);
+            } else if (queryType == 2) {
+                // Type 2 query: Update lastAnswer and store it in results
+                int size = seqList.get(idx).size();
+                lastAnswer = seqList.get(idx).get(y % size);
+                results.add(lastAnswer);
+            }
+        }
+
+        return results;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Read the size of seqList and the number of queries
+        int n = scanner.nextInt();
+        int q = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+
+        // Read the queries
+        List<List<Integer>> queries = new ArrayList<>();
+        for (int i = 0; i < q; i++) {
+            List<Integer> query = new ArrayList<>();
+            query.add(scanner.nextInt());
+            query.add(scanner.nextInt());
+            query.add(scanner.nextInt());
+            queries.add(query);
+        }
+
+        // Get the results of type 2 queries
+        List<Integer> results = dynamicArray(n, queries);
+
+        // Print the results
+        for (int result : results) {
+            System.out.println(result);
+        }
+
+        scanner.close();
+    }
+}
+
+
+//output
+
+input Example:
+2 5
+1 0 5
+1 1 7
+1 0 3
+2 1 0
+2 1 1
+Output Example:
+
+7
+3
