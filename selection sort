@@ -42,12 +42,13 @@ class Main {
 
 //output
 Enter array size:
-5
+6
 Enter array elements:
 12
 4
 2
 67
 44
+90
 Sorted array:
-2 4 12 44 67 
+2 4 12 44 67 90
