@@ -1,5 +1,5 @@
 import java.util.*;
-class Main{
+class BubbleSort{
     public static void bubble(int a[])
     {
         int n= a.length;
